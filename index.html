@@ -129,7 +129,6 @@
 
         /* ── Controles generales ────────────────────────── */
         #close-btn {
-            /* En vertical: botón de cierre en la esquina superior derecha del panel */
             position: absolute; top: 8px; right: 8px; z-index: 10;
             width: 22px; height: 22px;
             display: flex; justify-content: center; align-items: center;
@@ -141,9 +140,6 @@
         }
         #close-btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
 
-        /* El panel necesita position:relative para el close-btn absolute */
-        #main-panel { position: fixed; }
-
         .control-group {
             display: flex;
             flex-direction: column;
@@ -154,7 +150,6 @@
             user-select: none; -webkit-user-select: none;
         }
 
-        /* Fila interna para label + valor numérico */
         .control-group label {
             font-size: 9px;
             font-weight: 700;
@@ -169,8 +164,8 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            width: 100%;           /* ocupa todo el ancho del panel vertical */
-            height: 22px;          /* área táctil generosa para iOS/Android */
+            width: 100%;
+            height: 22px;
             padding: 0;
             margin: 0;
             background: transparent;
@@ -182,7 +177,6 @@
             touch-action: pan-x;
         }
 
-        /* ── TRACK: webkit (Chrome, Safari, iOS Safari, Android Chrome) */
         input[type="range"]::-webkit-slider-runnable-track {
             width: 100%;
             height: 5px;
@@ -192,7 +186,6 @@
             box-shadow: none;
         }
 
-        /* ── THUMB: webkit */
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -203,7 +196,6 @@
             border: 2px solid rgba(255,255,255,0.9);
             box-shadow: 0 0 0 2px rgba(255,255,255,0.25), 0 2px 6px rgba(0,0,0,0.5);
             cursor: pointer;
-            /* Centrar verticalmente respecto al track de 5px */
             margin-top: -5.5px;
             transition: box-shadow 0.15s, transform 0.15s;
         }
@@ -216,7 +208,6 @@
             transform: scale(1.2);
         }
 
-        /* ── TRACK: Firefox */
         input[type="range"]::-moz-range-track {
             width: 100%;
             height: 5px;
@@ -225,14 +216,12 @@
             border: none;
         }
 
-        /* ── PROGRESS: Firefox (parte izquierda del thumb, "filled") */
         input[type="range"]::-moz-range-progress {
             height: 5px;
             border-radius: 3px;
             background: rgba(255,255,255,0.75);
         }
 
-        /* ── THUMB: Firefox */
         input[type="range"]::-moz-range-thumb {
             width: 16px;
             height: 16px;
@@ -247,31 +236,6 @@
             box-shadow: 0 0 0 4px rgba(255,255,255,0.2), 0 2px 8px rgba(0,0,0,0.6);
         }
 
-        /* ── TRACK: IE/Edge legacy */
-        input[type="range"]::-ms-track {
-            width: 100%; height: 5px;
-            background: transparent;
-            border-color: transparent;
-            color: transparent;
-        }
-        input[type="range"]::-ms-fill-lower {
-            background: rgba(255,255,255,0.7);
-            border-radius: 3px;
-        }
-        input[type="range"]::-ms-fill-upper {
-            background: rgba(255,255,255,0.22);
-            border-radius: 3px;
-        }
-        input[type="range"]::-ms-thumb {
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: #ffffff;
-            border: 2px solid rgba(255,255,255,0.9);
-            cursor: pointer;
-            margin-top: 0;
-        }
-
-        /* ── Control-group con checkbox: fila horizontal ── */
         .control-group.row {
             flex-direction: row !important;
             align-items: center !important;
@@ -282,7 +246,6 @@
             margin-bottom: 0;
         }
 
-        /* ── CHECKBOX cross-browser ─────────────────────── */
         input[type="checkbox"] {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -323,7 +286,6 @@
             margin: 4px 0; flex-shrink: 0;
         }
 
-        /* ── palettes-container en vertical ─────────────── */
         #palettes-container {
             flex-direction: column !important;
             align-items: flex-start !important;
@@ -337,7 +299,7 @@
             width: 100%;
         }
 
-        /* ── Botón personalizar degradado ───────────────── */
+        /* ── Modales y botones ───────────────────────────── */
         #custom-gradient-btn {
             display: flex; align-items: center; gap: 6px;
             padding: 0 8px; height: 28px; width: 100%;
@@ -360,7 +322,6 @@
             min-width: 0;
         }
 
-        /* ── Modal degradado ────────────────────────────── */
         .modal-overlay {
             position: fixed; inset: 0;
             z-index: 2147483646;
@@ -389,6 +350,13 @@
             text-transform: uppercase; opacity: 0.8;
         }
 
+        #modal-colors-list {
+            display: flex; flex-direction: column; gap: 10px;
+            max-height: 35vh; overflow-y: auto; padding-right: 4px;
+        }
+        #modal-colors-list::-webkit-scrollbar { width: 4px; }
+        #modal-colors-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
         .color-row {
             display: flex; align-items: center; gap: 10px;
         }
@@ -413,6 +381,23 @@
         }
         .color-row input[type="text"]:focus { border-color: rgba(255,255,255,0.4); }
 
+        .remove-color-btn {
+            background: rgba(255,60,60,0.15); border: 1px solid rgba(255,60,60,0.3);
+            color: #ff9999; border-radius: 4px; width: 24px; height: 24px;
+            cursor: pointer; display: flex; justify-content: center; align-items: center;
+            font-size: 14px; line-height: 1; flex-shrink: 0; transition: all 0.2s; padding: 0;
+        }
+        .remove-color-btn:hover { background: rgba(255,60,60,0.35); color: #fff; }
+        .remove-color-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        #modal-add-color-btn {
+            background: rgba(255,255,255,0.06); border: 1px dashed rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.6); padding: 8px; border-radius: 6px;
+            cursor: pointer; transition: all 0.2s; font-size: 11px; text-transform: uppercase;
+            font-weight: 600; letter-spacing: 0.5px; margin-top: -4px;
+        }
+        #modal-add-color-btn:hover { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.4); }
+
         #modal-gradient-preview {
             width: 100%; height: 36px;
             border-radius: 8px;
@@ -421,7 +406,6 @@
         }
 
         .modal-actions { display: flex; gap: 8px; }
-
         .modal-apply-btn {
             flex: 1; padding: 9px;
             background: rgba(255,255,255,0.12);
@@ -432,7 +416,6 @@
             font-family: inherit;
         }
         .modal-apply-btn:hover { background: rgba(255,255,255,0.22); }
-
         .modal-cancel-g {
             padding: 9px 14px; background: transparent;
             border: 1px solid rgba(255,255,255,0.1);
@@ -442,7 +425,6 @@
         }
         .modal-cancel-g:hover { color: rgba(255,255,255,0.7); }
 
-        /* ── Botón captura ──────────────────────────────── */
         #capture-btn {
             display: flex; align-items: center; justify-content: center; gap: 5px;
             padding: 0 8px; height: 30px; width: 100%;
@@ -459,7 +441,6 @@
         #capture-btn:hover  { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.6); }
         #capture-btn:active { transform: scale(0.97); }
 
-        /* ── Modal resolución ───────────────────────────── */
         #capture-modal-inner {
             background: rgba(15,15,18,0.98);
             border: 1px solid rgba(255,255,255,0.18);
@@ -497,8 +478,6 @@
         }
         .modal-cancel:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.25); }
 
-
-        /* ── Estado UI oculta (clic en canvas) ──────────── */
         body.ui-hidden #zeqel-logo,
         body.ui-hidden #main-panel,
         body.ui-hidden #mini-open-btn {
@@ -507,7 +486,6 @@
             transition: opacity 0.35s ease;
         }
 
-        /* Hint sutil que aparece al ocultar la UI */
         #ui-hint {
             position: fixed;
             bottom: 18px;
@@ -524,7 +502,6 @@
         }
         body.ui-hidden #ui-hint { opacity: 1; }
 
-        /* ── Toast progreso ─────────────────────────────── */
         #capture-progress {
             position: fixed; bottom: 60px; left: 50%;
             transform: translateX(-50%);
@@ -541,7 +518,6 @@
     </style>
 </head>
 <body>
-
     <!-- Canvas WebGL nativo -->
     <canvas id="glcanvas"></canvas>
 
@@ -554,7 +530,6 @@
         </svg>
     </div>
 
-
     <!-- Hint: clic para mostrar UI -->
     <div id="ui-hint">clic para mostrar</div>
 
@@ -564,21 +539,8 @@
     <div id="gradient-modal" class="modal-overlay">
         <div id="gradient-modal-inner">
             <h3>🎨 Degradado personalizado</h3>
-            <div class="color-row">
-                <label>Color 1</label>
-                <input type="color" id="custom-c1-picker" value="#001f3f">
-                <input type="text"  id="custom-c1-hex"    value="#001f3f" maxlength="7" placeholder="#000000">
-            </div>
-            <div class="color-row">
-                <label>Color 2</label>
-                <input type="color" id="custom-c2-picker" value="#0074d9">
-                <input type="text"  id="custom-c2-hex"    value="#0074d9" maxlength="7" placeholder="#000000">
-            </div>
-            <div class="color-row">
-                <label>Color 3</label>
-                <input type="color" id="custom-c3-picker" value="#7fdbff">
-                <input type="text"  id="custom-c3-hex"    value="#7fdbff" maxlength="7" placeholder="#000000">
-            </div>
+            <div id="modal-colors-list"></div>
+            <button id="modal-add-color-btn">+ Añadir Color</button>
             <div id="modal-gradient-preview"></div>
             <div class="modal-actions">
                 <button class="modal-apply-btn" id="gradient-apply-btn">Aplicar</button>
@@ -607,7 +569,6 @@
 
     <!-- Panel principal — VERTICAL -->
     <div id="main-panel">
-
         <!-- Isotipo Zeqel dentro del panel -->
         <div id="panel-isotipo-wrap">
             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 616.308 516.482">
@@ -698,9 +659,9 @@
         precision highp float;
         uniform vec2  uResolution;
         uniform float uTime;
-        uniform vec3  uColor1;
-        uniform vec3  uColor2;
-        uniform vec3  uColor3;
+        #define MAX_COLORS 10
+        uniform vec3  uColors[MAX_COLORS];
+        uniform int   uNumColors;
         uniform float uColorOffset;
         uniform float uColorMultiplier;
         uniform float uSpeed;
@@ -723,8 +684,19 @@
                 f = abs(sin(f * 20.0));
                 f = smoothstep(0.0, 0.8, f);
             }
-            vec3 col = mix(uColor1, uColor2, smoothstep(0.0, 0.4, f));
-            col = mix(col, uColor3, smoothstep(0.4, 1.0, f));
+            
+            vec3 col = uColors[0];
+            float stepSize = 1.0 / max(float(uNumColors - 1), 1.0);
+            for(int i = 0; i < MAX_COLORS - 1; i++) {
+                if (i < uNumColors - 1) {
+                    float tStart = float(i) * stepSize;
+                    float tEnd = float(i + 1) * stepSize;
+                    float amt = smoothstep(tStart, tEnd, f);
+                    if (f > tStart) {
+                        col = mix(col, uColors[i+1], amt);
+                    }
+                }
+            }
             gl_FragColor = vec4(col, 1.0);
         }
     `;
@@ -735,7 +707,7 @@
     const STORAGE_KEY = 'shader_bg_config_xat';
 
     const defaultConfig = {
-        color1:'#001f3f', color2:'#0074d9', color3:'#7fdbff',
+        colors: ['#001f3f', '#0074d9', '#7fdbff'],
         speed:0.5, elevation:1.0, frequency:0.5,
         colorOffset:0.8, colorMultiplier:1.0,
         wireframe:false, isPanelOpen:true
@@ -755,7 +727,16 @@
     function loadCfg(){
         try{
             const s = localStorage.getItem(STORAGE_KEY);
-            if(s) cfg = {...cfg, ...JSON.parse(s)};
+            if(s) {
+                const parsed = JSON.parse(s);
+                if(parsed.color1) {
+                    parsed.colors = [parsed.color1, parsed.color2, parsed.color3];
+                    delete parsed.color1; delete parsed.color2; delete parsed.color3;
+                }
+                cfg = {...cfg, ...parsed};
+            }
+            if(!cfg.colors || cfg.colors.length < 2) cfg.colors = [...defaultConfig.colors];
+            if(cfg.colors.length > 10) cfg.colors = cfg.colors.slice(0, 10);
         }catch(e){}
     }
     function saveCfg(){
@@ -799,7 +780,6 @@
     }
 
     function initWebGL(canvas){
-        // Intentar contextos en orden de preferencia
         const ctxOpts = { antialias:true, alpha:false, preserveDrawingBuffer:false };
         gl = canvas.getContext('webgl', ctxOpts)
             || canvas.getContext('experimental-webgl', ctxOpts);
@@ -808,7 +788,6 @@
         prog = buildProgram(VS, FS);
         gl.useProgram(prog);
 
-        // Quad que cubre toda la pantalla
         buf = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, buf);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
@@ -820,13 +799,11 @@
         gl.enableVertexAttribArray(pos);
         gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
 
-        // Cachear ubicaciones de uniforms
         uniforms = {
             uResolution:      gl.getUniformLocation(prog,'uResolution'),
             uTime:            gl.getUniformLocation(prog,'uTime'),
-            uColor1:          gl.getUniformLocation(prog,'uColor1'),
-            uColor2:          gl.getUniformLocation(prog,'uColor2'),
-            uColor3:          gl.getUniformLocation(prog,'uColor3'),
+            uColors:          gl.getUniformLocation(prog,'uColors'),
+            uNumColors:       gl.getUniformLocation(prog,'uNumColors'),
             uColorOffset:     gl.getUniformLocation(prog,'uColorOffset'),
             uColorMultiplier: gl.getUniformLocation(prog,'uColorMultiplier'),
             uSpeed:           gl.getUniformLocation(prog,'uSpeed'),
@@ -841,9 +818,13 @@
         const t = (performance.now() - startTime) / 1000;
         gl.uniform2f(uniforms.uResolution, gl.drawingBufferWidth, gl.drawingBufferHeight);
         gl.uniform1f(uniforms.uTime,             t);
-        gl.uniform3fv(uniforms.uColor1,          hexToRGB01(cfg.color1));
-        gl.uniform3fv(uniforms.uColor2,          hexToRGB01(cfg.color2));
-        gl.uniform3fv(uniforms.uColor3,          hexToRGB01(cfg.color3));
+        
+        let colorsArray = [];
+        cfg.colors.forEach(c => colorsArray.push(...hexToRGB01(c)));
+        while(colorsArray.length < 10 * 3) colorsArray.push(0,0,0);
+        gl.uniform3fv(uniforms.uColors, new Float32Array(colorsArray));
+        gl.uniform1i(uniforms.uNumColors, cfg.colors.length);
+
         gl.uniform1f(uniforms.uColorOffset,      cfg.colorOffset);
         gl.uniform1f(uniforms.uColorMultiplier,  cfg.colorMultiplier);
         gl.uniform1f(uniforms.uSpeed,            cfg.speed);
@@ -864,13 +845,6 @@
         gl.viewport(0, 0, w, h);
     }
 
-    function render(){
-        resizeCanvas();
-        setUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, 6);
-        animId = requestAnimationFrame(render);
-    }
-
     /* ============================================================
        CAPTURA ALTA RESOLUCIÓN — WebGL offscreen
     ============================================================ */
@@ -878,7 +852,6 @@
         progressEl.textContent = `Generando ${targetW} × ${targetH}…`;
         progressEl.classList.add('show');
 
-        // Usar setTimeout para que el toast aparezca antes de bloquear
         setTimeout(()=>{
             try{
                 const offCanvas = document.createElement('canvas');
@@ -913,15 +886,18 @@
 
                 ogl.viewport(0,0,targetW,targetH);
 
-                // Congelar el tiempo actual del shader principal
                 const frozenTime = (performance.now() - startTime) / 1000;
 
                 const ou = n => ogl.getUniformLocation(op, n);
                 ogl.uniform2f(ou('uResolution'),       targetW, targetH);
                 ogl.uniform1f(ou('uTime'),             frozenTime);
-                ogl.uniform3fv(ou('uColor1'),          hexToRGB01(cfg.color1));
-                ogl.uniform3fv(ou('uColor2'),          hexToRGB01(cfg.color2));
-                ogl.uniform3fv(ou('uColor3'),          hexToRGB01(cfg.color3));
+
+                let colorsArray = [];
+                cfg.colors.forEach(c => colorsArray.push(...hexToRGB01(c)));
+                while(colorsArray.length < 10 * 3) colorsArray.push(0,0,0);
+                ogl.uniform3fv(ou('uColors'), new Float32Array(colorsArray));
+                ogl.uniform1i(ou('uNumColors'), cfg.colors.length);
+
                 ogl.uniform1f(ou('uColorOffset'),      cfg.colorOffset);
                 ogl.uniform1f(ou('uColorMultiplier'),  cfg.colorMultiplier);
                 ogl.uniform1f(ou('uSpeed'),            cfg.speed);
@@ -954,22 +930,29 @@
        UI — CONTROLES
     ============================================================ */
     const controlsList = [
-        { id:'ctrl-offset',    key:'colorOffset',     uniform:'uColorOffset',     type:'float' },
-        { id:'ctrl-contrast',  key:'colorMultiplier', uniform:'uColorMultiplier', type:'float' },
-        { id:'ctrl-speed',     key:'speed',           uniform:'uSpeed',           type:'float' },
-        { id:'ctrl-elevation', key:'elevation',       uniform:'uElevation',       type:'float' },
-        { id:'ctrl-frequency', key:'frequency',       uniform:'uFrequency',       type:'float' },
-        { id:'ctrl-wireframe', key:'wireframe',       uniform:'uWireframe',       type:'bool'  }
+        { id:'ctrl-offset',    key:'colorOffset',      uniform:'uColorOffset',      type:'float' },
+        { id:'ctrl-contrast',  key:'colorMultiplier',  uniform:'uColorMultiplier',  type:'float' },
+        { id:'ctrl-speed',     key:'speed',            uniform:'uSpeed',            type:'float' },
+        { id:'ctrl-elevation', key:'elevation',        uniform:'uElevation',        type:'float' },
+        { id:'ctrl-frequency', key:'frequency',        uniform:'uFrequency',        type:'float' },
+        { id:'ctrl-wireframe', key:'wireframe',        uniform:'uWireframe',        type:'bool'  }
     ];
 
-    function updateGradientPill(c1,c2,c3){
+    function updateGradientPill(colors){
         const pill = document.getElementById('gradient-preview-pill');
-        if(pill) pill.style.background = `linear-gradient(90deg,${c1} 0%,${c2} 50%,${c3} 100%)`;
+        if(!pill) return;
+        if(colors.length === 1) {
+            pill.style.background = colors[0];
+            return;
+        }
+        const step = 100 / (colors.length - 1);
+        const stops = colors.map((c, i) => `${c} ${i * step}%`).join(', ');
+        pill.style.background = `linear-gradient(90deg, ${stops})`;
     }
 
-    function applyColors(c1,c2,c3){
-        cfg.color1=c1; cfg.color2=c2; cfg.color3=c3;
-        updateGradientPill(c1,c2,c3);
+    function applyColors(colorsArr){
+        cfg.colors = [...colorsArr];
+        updateGradientPill(cfg.colors);
         saveCfg();
     }
 
@@ -978,13 +961,15 @@
         palettes.forEach(p=>{
             const btn = document.createElement('div');
             btn.className = 'palette-btn';
-            btn.style.background = `linear-gradient(135deg,${p[0]} 0%,${p[1]} 50%,${p[2]} 100%)`;
+            const step = 100 / (p.length - 1);
+            const stops = p.map((c, i) => `${c} ${i * step}%`).join(', ');
+            btn.style.background = `linear-gradient(135deg, ${stops})`;
             ['click','pointerdown','touchstart'].forEach(evt=>{
-                btn.addEventListener(evt, e=>{ e.stopPropagation(); e.preventDefault(); applyColors(p[0],p[1],p[2]); }, {capture:true});
+                btn.addEventListener(evt, e=>{ e.stopPropagation(); e.preventDefault(); applyColors(p); }, {capture:true});
             });
             cont.appendChild(btn);
         });
-        updateGradientPill(cfg.color1, cfg.color2, cfg.color3);
+        updateGradientPill(cfg.colors);
     }
 
     function setupPanelToggle(){
@@ -1036,43 +1021,92 @@
         const applyBtn  = document.getElementById('gradient-apply-btn');
         const cancelBtn = document.getElementById('gradient-cancel-btn');
         const preview   = document.getElementById('modal-gradient-preview');
+        const listEl    = document.getElementById('modal-colors-list');
+        const addBtn    = document.getElementById('modal-add-color-btn');
 
-        const rows = [
-            { picker: document.getElementById('custom-c1-picker'), hex: document.getElementById('custom-c1-hex') },
-            { picker: document.getElementById('custom-c2-picker'), hex: document.getElementById('custom-c2-hex') },
-            { picker: document.getElementById('custom-c3-picker'), hex: document.getElementById('custom-c3-hex') }
-        ];
+        let modalColors = [];
 
         const refreshPrev = ()=>{
-            const [c1,c2,c3] = rows.map(r=>r.hex.value);
-            preview.style.background = `linear-gradient(90deg,${c1} 0%,${c2} 50%,${c3} 100%)`;
+            if(modalColors.length === 1) {
+                preview.style.background = modalColors[0];
+                return;
+            }
+            const step = 100 / (modalColors.length - 1);
+            const stops = modalColors.map((c, i) => `${c} ${i * step}%`).join(', ');
+            preview.style.background = `linear-gradient(90deg, ${stops})`;
         };
 
-        rows.forEach(({picker,hex})=>{
-            picker.addEventListener('input', ()=>{ hex.value=picker.value; refreshPrev(); });
-            hex.addEventListener('input', ()=>{
-                if(/^#[0-9a-fA-F]{6}$/.test(hex.value)){ picker.value=hex.value; refreshPrev(); }
+        const renderList = ()=>{
+            listEl.innerHTML = '';
+            modalColors.forEach((color, idx) => {
+                const row = document.createElement('div');
+                row.className = 'color-row';
+                
+                const label = document.createElement('label');
+                label.textContent = `Color ${idx + 1}`;
+                
+                const picker = document.createElement('input');
+                picker.type = 'color';
+                picker.value = color;
+                
+                const hex = document.createElement('input');
+                hex.type = 'text';
+                hex.value = color;
+                hex.maxLength = 7;
+
+                const delBtn = document.createElement('button');
+                delBtn.className = 'remove-color-btn';
+                delBtn.innerHTML = '✕';
+                delBtn.disabled = modalColors.length <= 2;
+                delBtn.title = 'Eliminar color';
+
+                picker.addEventListener('input', ()=>{ hex.value=picker.value; modalColors[idx]=picker.value; refreshPrev(); });
+                hex.addEventListener('input', ()=>{
+                    if(/^#[0-9a-fA-F]{6}$/.test(hex.value)){ picker.value=hex.value; modalColors[idx]=hex.value; refreshPrev(); }
+                });
+                hex.addEventListener('blur', ()=>{
+                    let v = hex.value.trim();
+                    if(/^[0-9a-fA-F]{6}$/.test(v)){ v='#'+v; hex.value=v; picker.value=v; modalColors[idx]=v; refreshPrev(); }
+                });
+                
+                delBtn.addEventListener('click', (e)=>{
+                    e.stopPropagation();
+                    if(modalColors.length > 2) {
+                        modalColors.splice(idx, 1);
+                        renderList();
+                    }
+                });
+
+                row.appendChild(label);
+                row.appendChild(picker);
+                row.appendChild(hex);
+                row.appendChild(delBtn);
+                listEl.appendChild(row);
             });
-            hex.addEventListener('blur', ()=>{
-                let v = hex.value.trim();
-                if(/^[0-9a-fA-F]{6}$/.test(v)){ v='#'+v; hex.value=v; picker.value=v; refreshPrev(); }
-            });
+            
+            addBtn.style.display = modalColors.length >= 10 ? 'none' : 'block';
+            refreshPrev();
+        };
+
+        addBtn.addEventListener('click', (e)=>{
+            e.stopPropagation(); e.preventDefault();
+            if(modalColors.length < 10) {
+                modalColors.push('#ffffff');
+                renderList();
+            }
         });
 
         openBtn.addEventListener('click', e=>{
             e.stopPropagation(); e.preventDefault();
-            rows[0].picker.value=cfg.color1; rows[0].hex.value=cfg.color1;
-            rows[1].picker.value=cfg.color2; rows[1].hex.value=cfg.color2;
-            rows[2].picker.value=cfg.color3; rows[2].hex.value=cfg.color3;
-            refreshPrev();
+            modalColors = [...cfg.colors];
+            renderList();
             modal.classList.add('visible');
         }, {capture:true});
 
         applyBtn.addEventListener('click', e=>{
             e.stopPropagation();
-            const [c1,c2,c3] = rows.map(r=>r.hex.value);
-            if([c1,c2,c3].every(c=>/^#[0-9a-fA-F]{6}$/.test(c))){
-                applyColors(c1,c2,c3); modal.classList.remove('visible');
+            if(modalColors.every(c=>/^#[0-9a-fA-F]{6}$/.test(c))){
+                applyColors(modalColors); modal.classList.remove('visible');
             }
         }, {capture:true});
 
@@ -1099,17 +1133,10 @@
         });
     }
 
-    /* ============================================================
-       OCULTAR / MOSTRAR TODA LA UI CON CLIC EN EL CANVAS
-       - Un clic en la textura oculta logos + panel
-       - Otro clic los vuelve a mostrar
-       - No interfiere con los modales ni con los controles
-    ============================================================ */
     function setupCanvasToggle(){
         const canvas = document.getElementById('glcanvas');
 
         canvas.addEventListener('click', e => {
-            // Ignorar si hay algún modal abierto
             const gradientOpen = document.getElementById('gradient-modal').classList.contains('visible');
             const captureOpen  = document.getElementById('capture-modal').classList.contains('visible');
             if(gradientOpen || captureOpen) return;
@@ -1117,7 +1144,6 @@
             document.body.classList.toggle('ui-hidden');
         });
 
-        // Touch: igual, pero solo si no fue un swipe (delta < 8px)
         let touchStartX = 0, touchStartY = 0;
         canvas.addEventListener('touchstart', e => {
             touchStartX = e.touches[0].clientX;
@@ -1136,9 +1162,6 @@
         }, {passive:true});
     }
 
-    /* ============================================================
-       LOOP PRINCIPAL
-    ============================================================ */
     function loop(){
         pollControls();
         resizeCanvas();
@@ -1147,9 +1170,6 @@
         requestAnimationFrame(loop);
     }
 
-    /* ============================================================
-       ARRANQUE
-    ============================================================ */
     window.addEventListener('DOMContentLoaded', ()=>{
         loadCfg();
 
